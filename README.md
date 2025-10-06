@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Personal Project | 채소 기반 요리 추천 서비스
 
-## Getting Started
+## 프로젝트 목표
 
-First, run the development server:
+요리를 하다 보면 누구나 한 번쯤 겪는 고민이 있습니다.<br />
+_"냉장고에 있는 채소로 도대체 뭘 만들어야 하지?"_
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+저 역시 요리를 하면서 남아 있는 재료들을 어떻게 활용해야 할지 몰라 검색창에 재료명을 하나하나 입력하고, 블로그를 타고 들어가 레시피를 찾는 과정을 반복하곤 했습니다.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+그러나 이런 방식은 번거롭고, 정보도 중구난방으로 흩어져 있었습니다.<br />
+"내가 가진 재료만 선택하면 만들 수 있는 요리를 바로 추천해주는 서비스가 있으면 좋겠는데..."<br />
+그렇게 느낀 불편함에서 이 프로젝트는 시작되었습니다.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+최근에는 채소 중심의 식단이나 저속 노화 식습관에 대한 관심이 높아지고, 친환경 및 지속가능한 식문화 역시 중요한 트렌드로 자리잡고 있습니다.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+이 서비스는 이러한 흐름에 맞춰 요리를 탐색하는 방식을 더 단순하고 직관적인 경험으로 바꿔보려는 실험적인 시도입니다.
 
-## Learn More
+## 서비스 이름 | Veggle
 
-To learn more about Next.js, take a look at the following resources:
+> Veggie + Puzzle + Goggle → Veggle
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 프로젝트 소개
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Veggle은 사용자가 가지고 있는 채소만 선택하면 그 재료로 만들 수 있는 요리 레시피를 추천해주는 웹사이트입니다.
 
-## Deploy on Vercel
+## 프로젝트 기획 의도
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+① **검색 기반의 요리 탐색 경험이 너무 번거롭다고 느꼈어요.**
+네이버나 구글에 검색한 후, 블로그를 타고 들어가는 구조 대신 하나의 플랫폼에서 필요한 정보를 곧바로 얻을 수 있는 서비스를 만들고 싶었어요.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+② **직관적인 UI로 누구나 쉽게 사용할 수 있기를 바랐어요.** 복잡한 키워드 검색 없이 클릭 몇 번으로 탐색 가능한 인터페이스를 설계하고 싶었어요.
+
+③ **자주 버려지는 채소들에 대한 아쉬움이 있었어요.** Veggle은 냉장고 속 애매한 채소들을 최대한 활용하고, 있는 재료만으로도 근사한 요리를 만들 수 있다는 메시지를 담고 싶었어요.
+
+## 주요 기능
+
+| **기능**                    | **설명**                                                           |
+| --------------------------- | ------------------------------------------------------------------ |
+| **채소 선택 UI**            | 현재 갖고 있는 채소를 버튼으로 선택                                |
+| **레시피 필터링**           | 선택한 채소로 만들 수 있는 요리만 표시                             |
+| **일치율에 따른 결과 분류** | 완전 일치 / 일부 일치 레시피로 구분하여 표시                       |
+| **레시피 상세 페이지**      | 요리 이미지, 만드는 법, 필요한 재료 등 안내                        |
+| **즐겨찾기 기능**           | 마음에 드는 레시피 저장 후 언제든지 다시 보기 (Supabase 기반 예정) |
+
+## 페이지 구성
+
+- **홈 (채소 선택 & 추천 보기)**
+  - 채소 사진들이 그리드로 나열되어 있으며, 사용자는 자기가 가진 채소 이미지를 클릭하여 다중 선택할 수 있어요.
+  - 선택이 끝난 후, "레시피 보기" 버튼을 누르면
+    해당 재료로 만들 수 있는 레시피 목록이 추천돼요.
+  - 실시간 자동 필터링이 아닌 **사용자 주도형 탐색 흐름**이에요.
+- **레시피 상세 페이지**
+  - 레시피 이미지, 설명, 소요 시간, 재료, 난이도, 대체 재료 등
+- **즐겨찾기 페이지**
+  - 저장한 레시피 목록 확인 및 삭제 가능 (로그인 유저별)
+
+## 기술 스택
+
+| 항목          | 기술                           |
+| ------------- | ------------------------------ |
+| Framework     | Next.js (App Router)           |
+| Styling       | Tailwind CSS                   |
+| 상태관리      | React 기본 상태 or Zustand     |
+| 데이터 저장   | Supabase (Table + RLS)         |
+| 사용자 인증   | Supabase Auth (Email)          |
+| 즐겨찾기 저장 | Supabase 기반 유저별 저장 예정 |
+
+## 개발 로그
+
+| 날짜       | 작업 내용                                     |
+| ---------- | --------------------------------------------- |
+| 2025-10-06 | GitHub 레포 생성, 로컬 연동, 초기 README 작성 |
+
+> 개발이 진행되면 README도 함께 업데이트될 예정입니다.
